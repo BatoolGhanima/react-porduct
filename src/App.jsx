@@ -1,16 +1,19 @@
-import { list } from 'postcss'
+
 import { useState } from 'react'
 import Product from './components/ProductForm'
-import { set } from 'zod'
+
 
 
 
 function App() {
-  const [products, setProducts] = useState([{ id: 1, name: "lap", price: 250 },
+  const [products, setProducts] = useState([
+    { id: 1, name: "lap", price: 250},
     { id: 2, name: "iphone", price: 600 } 
   ]);
   const addProduct = (product) => {
-    setProducts([...products, product]);
+    const newId = products.map((i) => i.id) + 1;
+    const newProduct = { ...product, id: newId };
+    setProducts([...products, newProduct]);
   };
   const delProduct = (id) => {
     const newProducts = products.filter((product) => product.id !== id);
@@ -27,11 +30,11 @@ function App() {
     <>
       
       <Product onAdd={addProduct}></Product>
-      <div>
+      <div className='flex  flex-col justify-center items-center'>
         {products.map((product) => (
           <li
             key={product.id}
-           className="flex justify-between items-center m-4 p-4 border rounded-md bg-gray-200 shadow-lg"
+           className="flex justify-between items-center m-4 p-4 border rounded-md bg-gray-200 shadow-lg w-1/2"
           >
                 <span>{product.name}-$ { product.price}</span>  
                   <div>
@@ -41,7 +44,8 @@ function App() {
               <button onClick={() => delProduct(product.id)}
                               className="bg-red-500 text-white p-2 m-2 rounded-md hover:bg-red-600"
 
-              >Delete</button>
+              >Delete
+              </button>
                   </div>
           </li>
         ))}
