@@ -6,7 +6,9 @@ import { set } from 'zod'
 
 
 function App() {
-  const [products, setProducts] = useState([{id:1,name:"lap",price:250}]);
+  const [products, setProducts] = useState([{ id: 1, name: "lap", price: 250 },
+    { id: 2, name: "iphone", price: 600 } 
+  ]);
   const addProduct = (product) => {
     setProducts([...products, product]);
   };
@@ -37,7 +39,7 @@ function App() {
                               className="bg-blue-500 text-white p-2 m-2 rounded-md hover:bg-blue-600"
               > increase price </button>     
               <button onClick={() => delProduct(product.id)}
-                              className="bg-red-500 text-white p-2 m-2 rounded-md hover:bg-blue-600"
+                              className="bg-red-500 text-white p-2 m-2 rounded-md hover:bg-red-600"
 
               >Delete</button>
                   </div>
